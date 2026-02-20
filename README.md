@@ -6,19 +6,17 @@ I intended to also use Tailwind, but CSS is a little bit more convenient rn, so.
 
 # Environment set-up progress
 
-## Installing Mediapipe FaceMesh and Hand Landmark
-
-- Install Hand Landmark
+- Installing Node Package Manager (NPM) version 10.9.2
+- For Node.js, the version is v22.15.0
+- After installing those, go to the root dir of this repo (which has directories ```src/``` and ```public/```), and run this:
 ```bash
-npm install @mediapipe/hands
+npm install
 ```
+- There would be many vulnerabilities (**high ones at that**) - but we would fix that another day (probably through npm audit and overwritting dependencies like my Sensei ```Gemini``` taught).
 
-## Installing Typescript:
+# Plan (thanks, sensei ```Gemini```):
 
-```bash
-npm install --save-dev typescript @types/react @types/react-dom
-npx tsc --init # Creating tsconfig.json
-
-# Installing test libraries since JS doesn't care, but TS does
-npm install --save-dev @types/jest @types/testing-library__jest-dom @testing-library/react @testing-library/jest-dom --legacy-peer-deps # The tag --legacy-peer-deps is great to bypass the error (see more in LEARNING.md)
-```
+- Dockerize and Deploy it to Vercel cloud.
+- Take a look into Tailwind and see if I could manage it.
+- Connect the frontend to backend (probably Django) to make a full web app for birthday congratulations.
+- 

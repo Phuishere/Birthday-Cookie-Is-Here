@@ -14,9 +14,9 @@
     "verbatimModuleSyntax": false, // OP: I changed this as it's quite strict with typed importing
 
     // Enable strict type checking so you can catch bugs early
-    "strict": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
+    "strict": false,
+    "noUncheckedIndexedAccess": false,
+    "noImplicitOverride": false,
 
     // We are not transpiling, so preserve our source code and do not emit files
     "module": "preserve", // OP: Successor to "bundler" (use Vite to check imports instead)

@@ -12,9 +12,17 @@ And since I think I have problem concentrating on things, I think delving deeper
 
 # Setting up environment
 
-- Well, first, create React app according to the document, then just npm install the stuff AI tell you. I currently forgot, but it's really easy.
+## Overall
+Well, first, create React app according to the document, then just npm install the stuff AI tell you. I currently forgot, but it's really easy.
 
-> [!Warning] If react-scripts just isn't there, there could be problem with the version of packages (even in the ```package.json```). In my case, I chose **audit (forced)** and some stuff got downloaded with its latest version, leading to the ```package.jon``` not being able to recognise it.
+> [!Warning] If react-scripts just isn't there, there could be problem with the version of packages (even in the ```package.json```). In my case, I chose ```npm audit fix --forced``` and some stuff got downloaded with its latest version, leading to the ```package.jon``` not being able to recognise it, and having the ```react-scripts``` version being **0.0.0**.
+
+## Migrating to Vite
+
+1. Accordding to Sensei ```Gemini```, Vite and Next.js are alternatives to Create React App (CRA). I don't think I could learn full-stack right now, so ```I chose Vite``` with less changes to my App.
+
+2. To migrate to Vite, follow these steps:
+- Step 1: 
 
 # Setting up Typescript
 

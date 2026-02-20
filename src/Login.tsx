@@ -4,6 +4,8 @@ import bgVideo from './assets/background_login_video.mp4';
 
 import './styles/Login.css';
 
+const DEBUG_MODE = true;
+
 interface LoginProps {
   onLogin: () => void;
 }
@@ -12,8 +14,8 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const [playVideo, setPlayVideo] = useState<boolean>(false);
 
   const handlePlayClick = () => {
-    // setPlayVideo(true);
-    onLogin();
+    if (DEBUG_MODE) setPlayVideo(true);
+    else setPlayVideo(true);
   };
 
   return (
@@ -22,13 +24,15 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         {!playVideo ? (
           <img src={bgImage} alt="Login Background" className="bg-image" />
         ) : (
-          <video
-            src={bgVideo}
-            className="bg-image" 
-            autoPlay 
-            playsInline
-            onEnded={onLogin} /* Triggers onLogin EXACTLY when the video finishes */
-          />
+          <div className="video-responsive">
+            <iframe
+              className="bg-image"
+              src={`https://www.youtube.com/shorts/8B1RmfQMok8`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="Embedded youtube"
+            />
+          </div>
         )}
         
         {/* Fixed JSX conditional rendering and wired it to handlePlayClick */}
