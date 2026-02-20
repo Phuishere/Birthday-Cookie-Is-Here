@@ -9,10 +9,11 @@ import '../styles/Cake.css';
 // Assets
 import bgCakeImage from '../assets/background_cake_1.jpg'; 
 import cakeGif from '../assets/BirthdayCakeTrans.gif'; 
+import CandleLogic from './ai_logic/CandleLogic';
 
 const MainContent = () => {
     const SHOW_DEBUG = false;
-    const FRAME_THRESHOLD = 10;
+    const FRAME_THRESHOLD = 60;
     const [sign] = useState<string>("CandleLogic");
     const frameCountRef = useRef<number>(0);
     const [shownFrame, setShownFrame] = useState<number>(0);
@@ -20,10 +21,13 @@ const MainContent = () => {
     const [capturedImage, setCapturedImage] = useState<string | null>(null);
     const webcamRef = useRef<Webcam | null>(null);
 
+    let arr = Array.from({ length: Math.ceil(FRAME_THRESHOLD / 3) }, (_, i) => i * 3 + 3);
+    if (arr[arr.length - 1] !== FRAME_THRESHOLD) arr.push(FRAME_THRESHOLD);
+
     const increaseFrameCountRef = () => {
         if (!signDetected) {
             frameCountRef.current += 1;
-            if ([3, 6, 9, 10].includes(frameCountRef.current)) setShownFrame(frameCountRef.current);
+            if (arr.includes(frameCountRef.current)) setShownFrame(frameCountRef.current);
             if (frameCountRef.current >= FRAME_THRESHOLD) setSignDetected(true);
         }
     };
@@ -31,7 +35,7 @@ const MainContent = () => {
     const decreaseFrameCountRef = () => {
         if (!signDetected) {
             frameCountRef.current = (frameCountRef.current > 0) ? frameCountRef.current - 1 : 0;
-            if ([3, 6, 9, 10].includes(frameCountRef.current)) setShownFrame(frameCountRef.current);
+            if (arr.includes(frameCountRef.current)) setShownFrame(frameCountRef.current);
         }
     };
 
@@ -48,8 +52,12 @@ const MainContent = () => {
                 setSignDetected(true);
             }
         };
-        const stopAILogic = signFnDict[sign]!(tools);
-        return () => stopAILogic();
+        // const stopAILogic = signFnDict[sign](tools);
+        const stopAILogic = CandleLogic(tools);
+        return () => {
+            frameCountRef.current = 0;
+            stopAILogic();
+        }
     }, [sign]);
 
     return (

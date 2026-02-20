@@ -1,3 +1,4 @@
+import { FaceMesh } from '@mediapipe/face_mesh';
 import Webcam from 'react-webcam';
 
 export interface LoginProps {

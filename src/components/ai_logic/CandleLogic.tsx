@@ -1,12 +1,11 @@
 import {
-    FaceMesh,
     Results,
     NormalizedLandmarkList,
-    NormalizedLandmark
 } from '@mediapipe/face_mesh';
 
 import { Camera } from '@mediapipe/camera_utils';
-import { AILogicFn, AIMetric } from '../../types';
+import { AILogicFn } from '../../types';
+import { initiateFaceMesh } from '../../utils/initFaceMesh';
 
 export const candleMetrics = {
     "metricThreshold": 1.0,
@@ -23,7 +22,7 @@ const CandleLogic: AILogicFn = (
     let isFinished = false;
 
     // Face Mesh's onResults function
-    const onResults = (results: Results) => {
+    const onResults: ((Results) => void) = (results: Results) => {
         // Log to console so you can see if it's running (Press F12 in browser)
         // console.log("Face found:", results.multiFaceLandmarks.length); 
 
@@ -67,16 +66,9 @@ const CandleLogic: AILogicFn = (
     };
 
     // Downloading Face Mesh from online source
-    const faceMesh = new FaceMesh({
-        locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`,
-    });
-    
-    faceMesh.setOptions({
-        maxNumFaces: 1,
-        refineLandmarks: true,
-        minDetectionConfidence: 0.5,
-        minTrackingConfidence: 0.5,
-    });
+    // And logic to not double-initiate it (see the utils/initiateFaceMesh)
+    const faceMesh = initiateFaceMesh();
+    if (!faceMesh) return () => {};;
 
     faceMesh.onResults(onResults);
 
@@ -103,7 +95,6 @@ const CandleLogic: AILogicFn = (
     return () => {
         faceMesh.close();
         camera.stop();
-        countRef.current = 0;
     };
 };
 
