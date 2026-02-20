@@ -19,10 +19,12 @@ Well, first, create React app according to the document, then just npm install t
 
 ## Migrating to Vite
 
-1. Accordding to Sensei ```Gemini```, Vite and Next.js are alternatives to Create React App (CRA). I don't think I could learn full-stack right now, so ```I chose Vite``` with less changes to my App.
+Accordding to Sensei ```Gemini```, Vite and Next.js are alternatives to Create React App (CRA). I don't think I could learn full-stack right now, so ```I chose Vite``` with less changes to my App.
 
-2. To migrate to Vite, follow these steps:
-- Step 1: 
+To migrate to Vite, follow these steps:
+
+1. Step 1: Delete react-scripts from package.json
+2. Step 2: 
 
 # Setting up Typescript
 

@@ -7,7 +7,7 @@ import { signFnDict } from './signInfo';
 import '../styles/Cake.css';
 
 // Assets
-import bgCakeImage from '../assets/background_cake_1.jpg'; 
+import bgCakeImage from '../assets/background_cake.jpg'; 
 import cakeGif from '../assets/BirthdayCakeTrans.gif'; 
 import CandleLogic from './ai_logic/CandleLogic';
 
@@ -63,7 +63,7 @@ const MainContent = () => {
     return (
         <div className="cake-page"> {/* Reusing light blue background from Login.css */}
             <div className="cake-image-wrapper"> {/* Reusing centered image logic */}
-                <img src={bgCakeImage} alt="Cake Background" className="cake-image" />
+                <img src={bgCakeImage} alt="Cake Background" className="bg-cake-image" />
                 
                 {/* Screen 2 Overlays */}
                 <div className="cake-overlay">

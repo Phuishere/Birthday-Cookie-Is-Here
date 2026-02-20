@@ -30,7 +30,7 @@
 
 .instruction-bubble h2 {
     color: #db2777;
-    font-size: 1.5rem;
+    font-size: 0.8rem;
     margin: 0;
     line-height: 1.2;
 }
@@ -50,14 +50,14 @@
 }
 
 .cake-gif {
-    width: 250px;
+    width: 160px;
     height: auto;
     filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
 }
 
 .progress-container {
-    width: 280px;
-    height: 12px;
+    width: 30%;
+    height: 2%;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 10px;
     overflow: hidden;
@@ -101,7 +101,7 @@ Height locks to 100% of the screen (100vh), and width scales down naturally.
     display: flex;
     justify-content: center;
     width: 100%;
-    height: max-content;
+    height: 100%;
 }
 
 .cake-image {
@@ -111,22 +111,13 @@ Height locks to 100% of the screen (100vh), and width scales down naturally.
     height: auto;
 }
 
-@media (min-aspect-ratio: 10/7) {
-    .cake-image-wrapper {
-        width: auto;
-        height: 100%;
+@media (max-width: 800px) {
+    .cake-overlay {
+        top: 5%;
     }
 
-    .cake-image {
-        width: 100%;
-        height: auto;
-        top: 0;
-    }
-}
-
-@media (max-aspect-ratio: 10/7) {
     .cake-gif {
-        width: 25%;
+        width: 20%;
         height: auto;
     }
 

@@ -19,4 +19,4 @@ npm install
 - Dockerize and Deploy it to Vercel cloud.
 - Take a look into Tailwind and see if I could manage it.
 - Connect the frontend to backend (probably Django) to make a full web app for birthday congratulations.
-- 
+- Migrate the Create React App (CRA) to Vite.
