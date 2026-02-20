@@ -5,6 +5,13 @@
     align-items: center;
 }
 
+.cake-page-2 {
+    background-color: #9FE0D0;
+    overflow: hidden;
+    height: 100vh;
+    align-items: center;
+}
+
 .cake-overlay {
     position: absolute;
     top: 0;
@@ -76,7 +83,7 @@
     width: 100%;
     max-width: 500px;
     padding: 20px;
-    z-index: 100;
+    z-index: 20;
 }
 
 .hidden-webcam {
@@ -87,7 +94,7 @@
     height: 100%;
     object-fit: cover;
     pointer-events: none;
-    z-index: -1;
+    opacity: 0.5;
 }
 
 /* THE MAGIC FLIP:
@@ -138,4 +145,74 @@ Height locks to 100% of the screen (100vh), and width scales down naturally.
         margin: 0;
         line-height: 1.2;
     }
+}
+
+
+.prank-container {
+    position: absolute;
+    top: 80%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+
+    z-index: 30; /* High enough to be above the cake */
+    pointer-events: auto; /* Explicitly allow clicks */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.captured-photo-wrapper {
+    position: relative;
+
+    padding: 10px;
+    background: white;
+    border: 5px solid #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    /* Rotate it a little bit as requested */
+    transform: rotate(-7deg); 
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.captured-photo {
+    width: 100px; /* Adjust size as needed */
+    height: auto;
+    display: block;
+}
+
+.cat-gif {
+    position: absolute;
+    bottom: -40px;
+    right: 100px;
+    width: 90px;
+    height: auto;
+    transform: rotate(15deg);
+
+    padding: 10px;
+    background: white;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0) rotate(0deg); }
+    100% { transform: scale(1) rotate(-7deg); }
+}
+
+.cake-btn {
+    padding: 15px 15px;
+    top: 10%;
+    background-color: #ff4757;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 9000;
+}
+
+.cake-btn:hover {
+    transform: scale(1.1);
+}
+
+.final-video-wrapper {
+    z-index: 9999;
 }

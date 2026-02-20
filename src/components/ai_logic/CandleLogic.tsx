@@ -8,7 +8,7 @@ import { AILogicFn } from '../../types';
 import { initiateFaceMesh } from '../../utils/initFaceMesh';
 
 export const candleMetrics = {
-    "metricThreshold": 1.0,
+    "metricThreshold": 1.3,
     "shownName": "Blowing Candle",
 }
 

@@ -32,7 +32,6 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         ) : (
           <div className="login-video-wrapper">
             <ReactPlayer
-              className="bg-video"
               height="100%"
               width="100%"
               onEnded={() => {

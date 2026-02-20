@@ -1,15 +1,16 @@
-import React, { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
+import ReactPlayer from 'react-player';
 import Webcam from 'react-webcam';
-import BirthdayCard from './ui/BirthdayCard';
-import { signFnDict } from './signInfo';
+import CandleLogic from './ai_logic/CandleLogic';
 
 // Import CSS
 import '../styles/Cake.css';
 
 // Assets
-import bgCakeImage from '../assets/background_cake.jpg'; 
-import cakeGif from '../assets/BirthdayCakeTrans.gif'; 
-import CandleLogic from './ai_logic/CandleLogic';
+import bgCakeImage from '../assets/background_cake.jpg';
+import cakeGif from '../assets/BirthdayCakeTrans.gif';
+import cakeOffGif from '../assets/BirthdayCakeOffTrans.gif';
+import dancingCat from '../assets/DancingCat.gif';
 
 const MainContent = () => {
     const SHOW_DEBUG = false;
@@ -20,6 +21,11 @@ const MainContent = () => {
     const [signDetected, setSignDetected] = useState<boolean>(false);
     const [capturedImage, setCapturedImage] = useState<string | null>(null);
     const webcamRef = useRef<Webcam | null>(null);
+
+    const onCakeButtonClick = () => {
+        // This replaces the current page with YouTube
+        window.location.href = "https://www.youtube.com/shorts/sWNoQ2YGpvI";
+    };
 
     let arr = Array.from({ length: Math.ceil(FRAME_THRESHOLD / 3) }, (_, i) => i * 3 + 3);
     if (arr[arr.length - 1] !== FRAME_THRESHOLD) arr.push(FRAME_THRESHOLD);
@@ -72,7 +78,7 @@ const MainContent = () => {
                         <div className="bouncing-arrow">↓</div>
                     </div>
 
-                    <img src={cakeGif} alt="Birthday Cake" className="cake-gif" />
+                    <img src={!signDetected ? cakeGif : cakeOffGif} alt="Birthday Cake" className="cake-gif" />
 
                     <div className="progress-container">
                         <div 
@@ -80,6 +86,27 @@ const MainContent = () => {
                             style={{ width: `${(shownFrame / FRAME_THRESHOLD) * 100}%` }}
                         />
                     </div>
+
+                    {/* Prank Overlay when sign is detected */}
+                    {signDetected && capturedImage && (
+                        <>
+                            <div className="prank-container">
+                                <div className="captured-photo-wrapper">
+                                    <img 
+                                        src={capturedImage} 
+                                        alt="Gotcha!" 
+                                        className="captured-photo" 
+                                    />
+                                    <img 
+                                        src={dancingCat} 
+                                        alt="Dancing Cat" 
+                                        className="cat-gif" 
+                                    />
+                                </div>
+                                <div className="cake-btn" onClick={ onCakeButtonClick }>To Last Video</div>
+                            </div>
+                        </>
+                    )}
                 </div>
 
                 <Webcam
@@ -87,7 +114,11 @@ const MainContent = () => {
                     screenshotFormat="image/jpeg"
                     videoConstraints={{ width: 640, height: 480, facingMode: "user" }}
                     className="hidden-webcam"
-                    style={{ opacity: SHOW_DEBUG ? 0.5 : 0 }}
+                    // For mobile
+                    playsInline
+                    muted
+                    // For debuging
+                    style={{ zIndex: SHOW_DEBUG ? 100 : -999 }}
                 />
             </div>
         </div>
